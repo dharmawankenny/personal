@@ -46,11 +46,11 @@ let make = _children => {
     <>
       (
         switch self.state.route {
-        | Home => <Home message="home" />
-        | Story => <Story message="story" />
-        | Skills => <Skills message="skills" />
-        | Works => <Works message="works" />
-        | Contact => <Contact message="contact" />
+        | Home => <Home />
+        | Story => <Story />
+        | Skills => <Skills />
+        | Works => <Works />
+        | Contact => <Contact />
         }
       )
     </>
