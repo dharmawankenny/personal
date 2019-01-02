@@ -27,9 +27,23 @@ module.exports = {
       append: false,
     })
   ],
+  module: {
+    rules: [
+      {
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[path][name].[hash].[ext]",
+          },
+        },
+      }
+    ]
+  },
   devServer: {
     compress: true,
     contentBase: outputDir,
+    watchContentBase: true,
     port: process.env.PORT || 8000,
     historyApiFallback: true
   }

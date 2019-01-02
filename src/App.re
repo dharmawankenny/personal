@@ -5,16 +5,25 @@ type page =
   | Works
   | Contact;
 
-type state = { route: page };
+type colorMode =
+  | Light
+  | Dark;
+
+type state = {
+  color: colorMode,
+  route: page,
+};
 
 type action =
-  | HandleRouteChange(page);
+  | HandleRouteChange(page)
+  | HandleColorToggle(colorMode);
 
 let component = ReasonReact.reducerComponent("App");
 
 let make = _children => {
   ...component,
   initialState: () => ({
+    color: Dark,
     route: switch (ReasonReact.Router.dangerouslyGetInitialUrl().path) {
     | [] => Home
     | ["story", ..._rest] => Story
@@ -24,9 +33,10 @@ let make = _children => {
     | _ => Home
     },
   }),
-  reducer: (action, _state) => {
+  reducer: (action, state) => {
     switch (action) {
-    | HandleRouteChange(route: page) => ReasonReact.Update({ route: route })
+    | HandleRouteChange(route: page) => ReasonReact.Update({ ...state, route: route })
+    | HandleColorToggle(color: colorMode) => ReasonReact.Update({ ...state, color: color })
     };
   },
   didMount: self => {
@@ -44,6 +54,14 @@ let make = _children => {
   },
   render: self => {
     <>
+      <Navigation
+        toggleColorMode=(
+          () => self.send(HandleColorToggle(switch (self.state.color) {
+            | Light => Dark
+            | Dark => Light
+          }))
+        )
+      />
       (
         switch self.state.route {
         | Home => <Home />
