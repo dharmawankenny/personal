@@ -4,7 +4,7 @@ module ContactStyles = {
   let title = style([
     fontSize(rem(3.0)),
     fontWeight(700),
-    color(Theme.white),
+    color(currentColor),
   ]);
 }
 

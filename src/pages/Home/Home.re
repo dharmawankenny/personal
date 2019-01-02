@@ -4,13 +4,13 @@ module HomeStyles = {
   let title = style([
     fontSize(rem(3.0)),
     fontWeight(700),
-    color(Theme.white),
+    color(currentColor),
   ]);
 
   let subtitle = style([
     fontSize(rem(1.25)),
     fontWeight(400),
-    color(Theme.gray.lighter),
+    opacity(0.5),
     marginTop(rem(1.0)),
   ]);
 }

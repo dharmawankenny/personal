@@ -4,7 +4,7 @@ module Styles = {
   let wrapper = style([
     width(pct(100.0)),
     maxWidth(rem(64.0)),
-    minHeight(vh(100.0)),
+    minHeight(`calc(`sub, vh(100.0), rem(10.0))),
     margin2(zero, auto),
     display(flexBox),
     flexWrap(wrap),
