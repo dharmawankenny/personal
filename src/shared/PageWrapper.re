@@ -11,8 +11,11 @@ module Styles = {
     alignItems(center),
     alignContent(center),
     justifyContent(flexStart),
+    media("(max-width: 48rem)", [
+      padding(rem(1.5)),
+    ]),
   ]);
-}
+};
 
 let component = ReasonReact.statelessComponent("PageWrapper");
 
@@ -22,4 +25,4 @@ let make = (_children) => {
     <div className=Styles.wrapper>
       ...(_children)
     </div>,
-}
+};

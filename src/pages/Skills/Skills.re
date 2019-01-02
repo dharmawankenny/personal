@@ -5,8 +5,11 @@ module SkillsStyles = {
     fontSize(rem(3.0)),
     fontWeight(700),
     color(currentColor),
+    media("(max-width: 20rem)", [
+      fontSize(rem(1.5)),
+    ]),
   ]);
-}
+};
 
 let component = ReasonReact.statelessComponent("Skills");
 

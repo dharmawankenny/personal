@@ -11,6 +11,9 @@ module Styles = {
     alignItems(center),
     alignContent(center),
     justifyContent(flexStart),
+    media("(max-width: 48rem)", [
+      padding(rem(1.5)),
+    ]),
   ]);
 
   let actionButton = style([
@@ -18,9 +21,12 @@ module Styles = {
     firstOfType([
       margin(zero),
     ]),
+    media("(max-width: 48rem)", [
+      margin4(~left=rem(0.75), ~right=zero, ~top=zero, ~bottom=zero),
+    ]),
   ]);
 
-  let utilityButtonWrapper = style([
+  let navigationButtonWrapper = style([
     flex(1),
     display(flexBox),
     flexWrap(wrap),
@@ -32,8 +38,7 @@ module Styles = {
 
 let component = ReasonReact.statelessComponent("Navigation");
 
-let make = (~colorMode, ~toggleColorMode, _children) => {
-  let clickToggleColor = (_event) => toggleColorMode();
+let make = (~colorMode, _children) => {
   let navigate = (url: string) => (_event) => ReasonReact.Router.push(url);
   let mainColor = switch (colorMode) {
   | "Dark" => "#FFFFFF"
@@ -47,24 +52,18 @@ let make = (~colorMode, ~toggleColorMode, _children) => {
         <button className=Styles.actionButton onClick=navigate("/")>
           <Icons variant=Icons.Logo color=mainColor size=48 />
         </button>
-        <button className=Styles.actionButton onClick=navigate("/story")>
-          <Icons variant=Icons.Story color=mainColor size=32 />
-        </button>
-        <button className=Styles.actionButton onClick=navigate("/skills")>
-          <Icons variant=Icons.Skills color=mainColor size=32 />
-        </button>
-        <button className=Styles.actionButton onClick=navigate("/works")>
-          <Icons variant=Icons.Works color=mainColor size=32 />
-        </button>
-        <button className=Styles.actionButton onClick=navigate("/contact")>
-          <Icons variant=Icons.Contact color=mainColor size=32 />
-        </button>
-        <div className=Styles.utilityButtonWrapper>
-          <button className=Styles.actionButton onClick=clickToggleColor>
-            <Icons variant=Icons.Eye color=mainColor size=32 />
+        <div className=Styles.navigationButtonWrapper>
+          <button className=Styles.actionButton onClick=navigate("/story")>
+            <Icons variant=Icons.Story color=mainColor size=32 />
           </button>
-          <button className=Styles.actionButton onClick=clickToggleColor>
-            <Icons variant=Icons.Download color=mainColor size=32 />
+          <button className=Styles.actionButton onClick=navigate("/skills")>
+            <Icons variant=Icons.Skills color=mainColor size=32 />
+          </button>
+          <button className=Styles.actionButton onClick=navigate("/works")>
+            <Icons variant=Icons.Works color=mainColor size=32 />
+          </button>
+          <button className=Styles.actionButton onClick=navigate("/contact")>
+            <Icons variant=Icons.Contact color=mainColor size=32 />
           </button>
         </div>
       </div>,

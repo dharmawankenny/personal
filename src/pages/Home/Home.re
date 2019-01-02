@@ -5,6 +5,9 @@ module HomeStyles = {
     fontSize(rem(3.0)),
     fontWeight(700),
     color(currentColor),
+    media("(max-width: 20rem)", [
+      fontSize(rem(2.5)),
+    ]),
   ]);
 
   let subtitle = style([
@@ -12,8 +15,11 @@ module HomeStyles = {
     fontWeight(400),
     opacity(0.5),
     marginTop(rem(1.0)),
+    media("(max-width: 20rem)", [
+      fontSize(rem(1.0)),
+    ]),
   ]);
-}
+};
 
 let component = ReasonReact.statelessComponent("Home");
 
