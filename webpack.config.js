@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const outputDir = path.join(__dirname, 'build/');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -15,6 +16,18 @@ module.exports = {
     filename: 'Index.js',
   },
   plugins: [
+    new WebappWebpackPlugin({
+      logo: './src/asset/logo.png',
+      prefix: 'favicons/',
+      inject: 'force',
+      favicons: {
+        appName: 'Kenny Reida D',
+        appDescription: 'Personal Website of Kenny Reida Dharmawan — Jakarta-based Frontend Engineer',
+        developerName: 'Kenny Reida D.',
+        background: '#000',
+        theme_color: '#000',
+      },
+    }),
     new CopyWebpackPlugin([
       { from: 'src/index.css', to: 'css/' }
     ]),
